@@ -1,0 +1,11 @@
+{
+  "version":"0.1",
+  "feeds":[
+    {"id":"sgc_news","source_id":"sgc","type":"official","url":"https://www.sgc.gov.co/","enabled":true},
+    {"id":"ungrd","source_id":"ungrd","type":"official","url":"https://www.gestiondelriesgo.gov.co/","enabled":true},
+    {"id":"snigrd","source_id":"snigrd","type":"official","url":"https://www.gestiondelriesgo.gov.co/snigrd/","enabled":true},
+    {"id":"ideam","source_id":"ideam","type":"official","url":"https://www.ideam.gov.co/","enabled":true},
+    {"id":"defensa","source_id":"defensacivil","type":"official","url":"https://www.defensacivil.gov.co/","enabled":true},
+    {"id":"cruzroja","source_id":"cruzroja","type":"official","url":"https://www.cruzrojacolombiana.org/","enabled":true}
+  ]
+}
