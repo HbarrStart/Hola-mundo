@@ -1,0 +1,23 @@
+name: MOS Alpha-24 Red Team
+
+on:
+  push:
+    branches: [mos-alpha24-red-team]
+  pull_request:
+    branches: [mos-alpha24-red-team]
+  workflow_dispatch:
+
+jobs:
+  red-team:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install --upgrade pip pytest
+      - name: Run Alpha-24 adversarial suite
+        run: python -m pytest -q tests/test_mos_alpha24_red_team.py
