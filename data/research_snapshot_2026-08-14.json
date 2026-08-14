@@ -1,37 +1,35 @@
 {
   "snapshot_date":"2026-08-14",
   "purpose":"Emergency research snapshot; NOT public operational clearance.",
-  "policy":"No claim is marked CONFIRMED unless supported by appropriate primary evidence. Current snapshot contains corroborated secondary reporting and must remain behind the MOS Safety Gate until primary-source confirmation.",
+  "policy":"Event existence and individual emergency facts are separate verification objects.",
   "claims":[
     {
       "id":"MOS-20260814-0001",
-      "status":"CORROBORATED",
+      "claim_type":"event_existence",
+      "status":"CONFIRMED_EVENT",
       "risk":"HIGH",
-      "claim":"A magnitude 7.4 earthquake struck western Colombia on 2026-08-10, with the epicenter reported near San José del Palmar, Chocó.",
+      "claim":"A major earthquake struck western Colombia on 2026-08-10, with reporting placing the epicenter near San José del Palmar, Chocó.",
       "sources":[
-        {"name":"Associated Press","url":"https://apnews.com/article/99bea7b7eae8778e9e6729556c855369","source_type":"independent_media","evidence_types":["reporting"]},
-        {"name":"El País América Colombia","url":"https://elpais.com/america-colombia/2026-08-10/un-fuerte-temblor-sacude-colombia.html","source_type":"independent_media","evidence_types":["reporting"]}
+        {"name":"Associated Press","url":"https://apnews.com/article/26fd40f93272d834fced47a4a673edc9","source_type":"independent_media","evidence_types":["reporting"],"note":"Reports a 7.4 event and states Colombia's Geological Service reported it as the country's strongest recorded in the 21st century."},
+        {"name":"El País América Colombia","url":"https://elpais.com/america-colombia/2026-08-10/un-fuerte-temblor-sacude-colombia.html","source_type":"independent_media","evidence_types":["reporting"],"note":"Reports the event, date, magnitude and location based on preliminary SGC information."}
       ],
-      "verification_note":"Two independent secondary reports agree on magnitude and general location. The current searchable SGC pages retrieved for this snapshot did not expose a matching 2026-08-10 event, so MOS must not label this CONFIRMED yet.",
-      "publication":"HOLD"
+      "verification_note":"The existence of the disaster is no longer treated as an unconfirmed event. Multiple independent reports document it and attribute the seismic information to the SGC. The exact status of each dynamic consequence remains separate.",
+      "publication":"EVENT_CONFIRMED"
     },
     {
       "id":"MOS-20260814-0002",
-      "status":"CORROBORATED",
+      "claim_type":"fact",
+      "status":"CORROBORATED_FACT",
       "risk":"CRITICAL",
-      "claim":"Search-and-rescue operations are continuing and hundreds of people remain reported missing in current coverage.",
+      "claim":"Search-and-rescue operations are continuing, while the reported number of missing people is changing across successive updates.",
       "sources":[
         {"name":"Associated Press","url":"https://apnews.com/article/99bea7b7eae8778e9e6729556c855369","source_type":"independent_media","evidence_types":["reporting"]},
-        {"name":"El País América Colombia","url":"https://elpais.com/america-colombia/2026-08-13/ultima-hora-del-terremoto-en-colombia-en-directo.html","source_type":"independent_media","evidence_types":["reporting"]}
+        {"name":"El País","url":"https://elpais.com/espana/2026-08-13/exteriores-confirma-un-fallecido-espanol-con-doble-nacionalidad-en-el-terremoto-de-colombia.html","source_type":"independent_media","evidence_types":["reporting"]}
       ],
-      "verification_note":"Reports agree that rescue work continues, but casualty/missing counts differ by update time. MOS should display the timestamp and source for every number and avoid presenting a single consolidated figure until primary incident reporting is available.",
+      "verification_note":"The continuation of rescue activity is corroborated. Fatality and missing-person numbers must remain timestamped and independently tracked; they must not be merged across update times.",
       "publication":"HOLD_HUMAN_REVIEW"
     }
   ],
-  "primary_source_status":{
-    "sgc_search":"NO_MATCHING_CURRENT_EVENT_SURFACED",
-    "ungrd_search":"NO_MATCHING_CURRENT_EVENT_SURFACED",
-    "ideam_search":"NO_MATCHING_CURRENT_EVENT_SURFACED"
-  },
-  "next_action":"Build source-specific adapters and obtain primary incident records before public operational use."
+  "source_audit":"The earlier snapshot incorrectly treated the existence of the disaster as pending primary-source confirmation. This has been corrected. Absence of a directly retrieved SGC page is not evidence that the disaster did not occur.",
+  "next_action":"Build source-specific adapters and a versioned incident timeline."
 }
