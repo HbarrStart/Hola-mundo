@@ -1,0 +1,15 @@
+{
+  "mission":"ALPHA",
+  "observations":[
+    {
+      "id":"sgc-source-check-001",
+      "source":"Servicio Geológico Colombiano",
+      "source_url":"https://www2.sgc.gov.co/",
+      "title":"Fuente oficial SGC — comprobación de ingestión",
+      "summary":"Registro de prueba de la frontera de ingestión. No representa por sí mismo un evento sísmico ni un reporte de daños.",
+      "observed_at":"2026-08-14T00:00:00Z",
+      "event_id":null,
+      "evidence_types":["official_source_reference"]
+    }
+  ]
+}
