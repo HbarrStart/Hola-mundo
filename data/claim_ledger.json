@@ -1,0 +1,5 @@
+{
+  "version":"0.1",
+  "policy":"A claim is an auditable statement. Claims from different timestamps are never merged merely because their numbers differ slightly.",
+  "claims":[]
+}
