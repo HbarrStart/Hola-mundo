@@ -1,0 +1,9 @@
+{
+  "id":"MOS-EMERGENCY-2026-08-14",
+  "event_type":"earthquake",
+  "status":"ACTIVE",
+  "last_updated":"2026-08-14T19:00:00Z",
+  "facts":[],
+  "unknowns":["No consolidar cifras de víctimas de distintas horas sin identificar el balance oficial correspondiente.","No inferir estado de vías, hospitales, refugios o rutas a partir de publicaciones no específicas."],
+  "source_count":0
+}
