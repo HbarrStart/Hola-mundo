@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""MOS Alpha-13 traceable situation summary.
+"""MOS Alpha-13 traceable public situation summary.
 
-Only summarizes claims already present in the supplied ledger. It never creates
-new facts, inferred locations, numbers, or causal explanations.
+Only claims already cleared for public presentation are summarized. The
+summary layer never creates facts, inferred locations, numbers, or causal
+explanations and cannot bypass the Safety Gate.
 """
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable
 
-ALLOWED = {'ALLOW','ALLOW_WITH_CONTEXT','HUMAN_REVIEW','HOLD','BLOCK'}
+ALLOWED = {'ALLOW', 'ALLOW_WITH_CONTEXT', 'HUMAN_REVIEW', 'HOLD', 'BLOCK'}
+PUBLIC = {'ALLOW', 'ALLOW_WITH_CONTEXT'}
 
 @dataclass(frozen=True)
 class Claim:
@@ -34,7 +36,8 @@ def build_summary(claims: Iterable[Claim], include_blocked: bool = False) -> lis
     for c in claims:
         if c.status not in ALLOWED:
             raise ValueError('unknown_gate_status')
-        if c.status == 'BLOCK' and not include_blocked:
+        # Public summary is presentation-only: review, hold and block never escape.
+        if c.status not in PUBLIC:
             continue
         if not c.evidence_refs:
             raise ValueError('summary_item_missing_evidence_refs')
@@ -46,4 +49,4 @@ def assert_traceable(item: SummaryItem) -> bool:
     return bool(item.claim_id and item.evidence_refs and item.updated_at)
 
 if __name__ == '__main__':
-    print('MOS Alpha-13 loaded: ledger-only / traceable summary')
+    print('MOS Alpha-13 loaded: public-only / ledger-only / traceable summary')
