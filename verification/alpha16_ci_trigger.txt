@@ -1,0 +1,1 @@
+Alpha-16 CI verification trigger. Synthetic data only. Real emergency data is prohibited in this fixture.
