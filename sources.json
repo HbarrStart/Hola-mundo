@@ -1,0 +1,14 @@
+{
+  "version": "0.1",
+  "policy": "Primary sources only for emergency facts. Secondary sources are leads and require corroboration.",
+  "sources": [
+    {"id":"sgc","name":"Servicio Geológico Colombiano","type":"primary","scope":["earthquakes","aftershocks","seismicity"],"url":"https://www.sgc.gov.co/","enabled":true},
+    {"id":"ungrd","name":"Unidad Nacional para la Gestión del Riesgo de Desastres","type":"primary","scope":["emergency","damage","response","humanitarian"],"url":"https://www.gestiondelriesgo.gov.co/","enabled":true},
+    {"id":"snigrd","name":"Sistema Nacional de Información para la Gestión del Riesgo de Desastres","type":"primary","scope":["alerts","risk","incidents"],"url":"https://www.gestiondelriesgo.gov.co/snigrd/","enabled":true},
+    {"id":"cruzroja","name":"Cruz Roja Colombiana","type":"primary","scope":["humanitarian","donations","response"],"url":"https://www.cruzrojacolombiana.org/","enabled":true},
+    {"id":"defensacivil","name":"Defensa Civil Colombiana","type":"primary","scope":["rescue","response","alerts"],"url":"https://www.defensacivil.gov.co/","enabled":true},
+    {"id":"ideam","name":"IDEAM","type":"primary","scope":["weather","rainfall","landslides"],"url":"https://www.ideam.gov.co/","enabled":true},
+    {"id":"bomberos","name":"Dirección Nacional de Bomberos de Colombia","type":"primary","scope":["rescue","fire","response"],"url":"https://www.bomberos.gov.co/","enabled":true},
+    {"id":"alcaldias","name":"Autoridades territoriales","type":"primary","scope":["local emergency","shelters","roads","needs"],"url":"https://www.gov.co/","enabled":true}
+  ]
+}
