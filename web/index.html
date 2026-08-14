@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="MOS — tablero de situación y verificación de información de emergencia.">
+  <title>MOS · Situation Board</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17202a;background:#f5f7f9}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:24px}.hero{background:#111827;color:#fff;border-radius:18px;padding:24px}.tag{display:inline-block;font-size:.78rem;padding:4px 8px;border-radius:999px;background:#374151}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}.card{background:#fff;border:1px solid #dfe4ea;border-radius:14px;padding:16px}.status{font-weight:800}.green{color:#087f5b}.yellow{color:#9a6700}.orange{color:#b54708}.red{color:#b42318}.gray{color:#667085}.notice{margin-top:18px;padding:14px;border-left:4px solid #b42318;background:#fff}.small{font-size:.9rem;color:#667085}footer{margin-top:24px;font-size:.82rem;color:#667085}</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+  <span class="tag">MOS · EMERGENCY INFORMATION</span>
+  <h1>Situation Board</h1>
+  <p>Información organizada por evidencia, estado de verificación, riesgo y hora. MOS no convierte ausencia de información en ausencia de un problema.</p>
+</section>
+<section class="notice"><strong>⚠️ Seguridad:</strong> este tablero informativo no emite instrucciones autónomas de evacuación, rescate, rutas, medicina ni seguridad estructural. La información crítica requiere revisión humana.</section>
+<section class="grid" aria-label="Estados MOS">
+  <article class="card"><div class="status green">🟢 CONFIRMADO</div><p>Hechos con evidencia suficiente según las reglas MOS.</p></article>
+  <article class="card"><div class="status yellow">🟡 CORROBORADO</div><p>Información respaldada por múltiples fuentes, pero que no cumple todavía el estándar de confirmación.</p></article>
+  <article class="card"><div class="status orange">🟠 PENDIENTE</div><p>Reporte recibido que necesita verificación adicional.</p></article>
+  <article class="card"><div class="status red">🔴 EN CONFLICTO</div><p>Fuentes que presentan datos incompatibles. No se fusionan automáticamente.</p></article>
+  <article class="card"><div class="status gray">⚫ EXPIRADO</div><p>Información histórica que ya no debe interpretarse como estado actual.</p></article>
+</section>
+<section class="card" style="margin-top:18px">
+  <h2>¿Qué sabemos?</h2>
+  <p class="small">El tablero se conectará a los datos MOS después de superar validación de esquema, corroboración y Safety Gate. No se muestran afirmaciones de emergencia inventadas ni datos no verificados como hechos.</p>
+</section>
+<footer>Principio MOS: detectar rápido · verificar rigurosamente · publicar solo cuando sea defendible.</footer>
+</main>
+</body>
+</html>
