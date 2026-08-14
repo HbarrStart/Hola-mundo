@@ -2,10 +2,11 @@
   "$schema":"https://json-schema.org/draft/2020-12/schema",
   "title":"MOS Emergency Claim",
   "type":"object",
-  "required":["id","status","title","source","source_type","source_url","published_at","updated_at"],
+  "required":["id","status","claim_type","title","source","source_type","source_url","published_at","updated_at"],
   "properties":{
     "id":{"type":"string","pattern":"^MOS-[0-9]{8}-[0-9]{4}$"},
-    "status":{"enum":["CONFIRMED","CORROBORATED","PENDING_VERIFICATION","REJECTED","EXPIRED"]},
+    "claim_type":{"enum":["event_existence","fact","operational_instruction"]},
+    "status":{"enum":["CONFIRMED_EVENT","CONFIRMED_FACT","CORROBORATED_FACT","PENDING_VERIFICATION","CONFLICTING_REPORTS","REJECTED","EXPIRED"]},
     "priority":{"enum":["CRITICAL","HIGH","MEDIUM","LOW"]},
     "category":{"enum":["RESCUE","MISSING","VICTIMS","HEALTH","ROADS","SHELTER","WATER","FOOD","SUPPLIES","AFTERSHOCK","WEATHER","LANDSLIDE","OFFICIAL_MEASURE","CONTEXT","OTHER"]},
     "title":{"type":"string"},
@@ -19,7 +20,8 @@
     "updated_at":{"type":"string","format":"date-time"},
     "verified_at":{"type":["string","null"],"format":"date-time"},
     "verification_note":{"type":["string","null"]},
-    "evidence_types":{"type":"array","items":{"enum":["official_document","document","photo","video","geolocation","testimony","dataset","direct_observation","statement"]}},
+    "verification_basis":{"type":["string","null"]},
+    "evidence_types":{"type":"array","items":{"enum":["official_document","document","photo","video","geolocation","testimony","dataset","direct_observation","statement","reporting"]}},
     "corroboration_level":{"enum":["NONE","ONE_SOURCE","TWO_SOURCES","MULTIPLE_INDEPENDENT_SOURCES"]},
     "related_sources":{"type":"array","items":{"type":"string","format":"uri"}},
     "human_report":{"type":"boolean"}
