@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>MOS — Colombia en Emergencia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="pulse"></span><strong>MOS</strong><span>Monitoreo Operativo Solidario</span></div>
+    <div class="updated">Última revisión: <span id="updated">cargando…</span></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">INFORMACIÓN DE EMERGENCIA</p>
+        <h1>Colombia en emergencia.<br><span>Información que sirve.</span></h1>
+        <p class="lead">Un tablero independiente para encontrar información verificable, necesidades reportadas y canales oficiales. Sin rumores. Sin titulares sensacionalistas.</p>
+      </div>
+      <div class="status-card"><span class="status-dot"></span><div><strong>PROTOCOLO ACTIVO</strong><small>Fuentes priorizadas y trazables</small></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="Secciones">
+      <button class="active" data-tab="alertas">Alertas</button>
+      <button data-tab="ayuda">Cómo ayudar</button>
+      <button data-tab="fuentes">Fuentes</button>
+      <button data-tab="metodo">Método</button>
+    </nav>
+
+    <section id="alertas" class="panel active-panel">
+      <div class="notice"><strong>Regla MOS:</strong> si un dato no tiene fuente, fecha y hora de actualización, no se presenta como hecho.</div>
+      <div id="alerts" class="cards"></div>
+    </section>
+
+    <section id="ayuda" class="panel">
+      <h2>Ayudar sin estorbar</h2>
+      <div class="cards help-grid">
+        <article><b>1 · Verifica antes de donar</b><p>Comprueba quién solicita la ayuda y si el canal pertenece a una institución u organización identificable.</p></article>
+        <article><b>2 · No difundas rumores</b><p>No compartas cifras, audios, videos o supuestas predicciones sísmicas sin una fuente verificable.</p></article>
+        <article><b>3 · Sigue instrucciones oficiales</b><p>En una emergencia, los organismos de socorro coordinan rutas, prioridades y centros de recepción.</p></article>
+        <article><b>4 · Reporta información útil</b><p>Indica municipio, tipo de necesidad, fecha/hora y evidencia. No publiques datos personales sensibles.</p></article>
+      </div>
+    </section>
+
+    <section id="fuentes" class="panel">
+      <h2>Jerarquía de fuentes</h2>
+      <p class="muted">MOS no intenta reemplazar a las autoridades ni a los organismos de socorro. Los agrega, contrasta y traduce a información accionable.</p>
+      <div id="sources" class="source-list"></div>
+    </section>
+
+    <section id="metodo" class="panel">
+      <h2>Protocolo de verificación</h2>
+      <ol class="method"><li><b>Fuente primaria primero.</b> SGC, UNGRD, autoridades territoriales y organismos humanitarios.</li><li><b>Fecha y hora.</b> Cada dato debe conservar su momento de publicación/consulta.</li><li><b>Corroboración.</b> Un segundo organismo independiente cuando el dato sea crítico.</li><li><b>Estado explícito.</b> CONFIRMADO / EN VERIFICACIÓN / DESCARTADO.</li><li><b>Correcciones visibles.</b> Nunca borrar silenciosamente un dato publicado.</li><li><b>Separación editorial.</b> Información humanitaria ≠ opinión política.</li></ol>
+      <div class="method-box">⚠️ <b>Importante:</b> MOS no predice terremotos, no da diagnósticos estructurales y no sustituye instrucciones de rescate o evacuación.</div>
+    </section>
+  </main>
+  <footer>Proyecto comunitario experimental · MOS · v0 · <span id="build"></span></footer>
+  <script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>
