@@ -1,33 +1,26 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="MOS — tablero de situación y verificación de información de emergencia.">
-  <title>MOS · Situation Board</title>
-  <style>
-    :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17202a;background:#f5f7f9}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:24px}.hero{background:#111827;color:#fff;border-radius:18px;padding:24px}.tag{display:inline-block;font-size:.78rem;padding:4px 8px;border-radius:999px;background:#374151}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}.card{background:#fff;border:1px solid #dfe4ea;border-radius:14px;padding:16px}.status{font-weight:800}.green{color:#087f5b}.yellow{color:#9a6700}.orange{color:#b54708}.red{color:#b42318}.gray{color:#667085}.notice{margin-top:18px;padding:14px;border-left:4px solid #b42318;background:#fff}.small{font-size:.9rem;color:#667085}footer{margin-top:24px;font-size:.82rem;color:#667085}</style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="MOS — tablero de situación y verificación de información de emergencia.">
+<title>MOS · Situation Board</title>
+<style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#17202a;background:#f5f7f9}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:24px}.hero{background:#111827;color:#fff;border-radius:18px;padding:24px}.tag{display:inline-block;font-size:.78rem;padding:4px 8px;border-radius:999px;background:#374151}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}.card{background:#fff;border:1px solid #dfe4ea;border-radius:14px;padding:16px}.status{font-weight:800}.green{color:#087f5b}.yellow{color:#9a6700}.orange{color:#b54708}.red{color:#b42318}.gray{color:#667085}.notice{margin-top:18px;padding:14px;border-left:4px solid #b42318;background:#fff}.small{font-size:.9rem;color:#667085}button{border:1px solid #cfd6df;background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.fact{margin-top:12px;border-top:1px solid #eee;padding-top:12px}.meta{font-size:.82rem;color:#667085}.timeline{border-left:3px solid #d0d5dd;padding-left:14px}.empty{padding:20px;text-align:center;color:#667085}footer{margin-top:24px;font-size:.82rem;color:#667085}</style>
 </head>
-<body>
-<main class="wrap">
-<section class="hero">
-  <span class="tag">MOS · EMERGENCY INFORMATION</span>
-  <h1>Situation Board</h1>
-  <p>Información organizada por evidencia, estado de verificación, riesgo y hora. MOS no convierte ausencia de información en ausencia de un problema.</p>
-</section>
-<section class="notice"><strong>⚠️ Seguridad:</strong> este tablero informativo no emite instrucciones autónomas de evacuación, rescate, rutas, medicina ni seguridad estructural. La información crítica requiere revisión humana.</section>
-<section class="grid" aria-label="Estados MOS">
-  <article class="card"><div class="status green">🟢 CONFIRMADO</div><p>Hechos con evidencia suficiente según las reglas MOS.</p></article>
-  <article class="card"><div class="status yellow">🟡 CORROBORADO</div><p>Información respaldada por múltiples fuentes, pero que no cumple todavía el estándar de confirmación.</p></article>
-  <article class="card"><div class="status orange">🟠 PENDIENTE</div><p>Reporte recibido que necesita verificación adicional.</p></article>
-  <article class="card"><div class="status red">🔴 EN CONFLICTO</div><p>Fuentes que presentan datos incompatibles. No se fusionan automáticamente.</p></article>
-  <article class="card"><div class="status gray">⚫ EXPIRADO</div><p>Información histórica que ya no debe interpretarse como estado actual.</p></article>
-</section>
-<section class="card" style="margin-top:18px">
-  <h2>¿Qué sabemos?</h2>
-  <p class="small">El tablero se conectará a los datos MOS después de superar validación de esquema, corroboración y Safety Gate. No se muestran afirmaciones de emergencia inventadas ni datos no verificados como hechos.</p>
-</section>
+<body><main class="wrap">
+<section class="hero"><span class="tag">MOS · EMERGENCY INFORMATION</span><h1>Situation Board</h1><p>Información organizada por evidencia, estado de verificación, riesgo y hora.</p></section>
+<section class="notice"><strong>⚠️ Seguridad:</strong> MOS no emite instrucciones autónomas de evacuación, rescate, rutas, medicina ni seguridad estructural. La información crítica requiere revisión humana.</section>
+<div class="toolbar" aria-label="Filtros"><button data-filter="ALL">Todo</button><button data-filter="CONFIRMED_EVENT">Confirmado</button><button data-filter="CORROBORATED_FACT">Corroborado</button><button data-filter="CONFLICTING_REPORTS">En conflicto</button><button data-filter="PENDING_VERIFICATION">Pendiente</button></div>
+<section id="summary" class="grid" aria-label="Resumen"></section>
+<section class="card" style="margin-top:18px"><h2>¿Qué sabemos?</h2><div id="facts" class="timeline"><div class="empty">Cargando únicamente datos que hayan pasado el límite de publicación MOS…</div></div></section>
+<section class="card" style="margin-top:18px"><h2>¿Qué no sabemos?</h2><div id="unknowns" class="small">MOS mostrará aquí incertidumbres explícitas cuando existan en el dataset.</div></section>
 <footer>Principio MOS: detectar rápido · verificar rigurosamente · publicar solo cuando sea defendible.</footer>
 </main>
-</body>
-</html>
+<script>
+const DATA_URL='../data/public_situation.json'; let data={situations:[]},filter='ALL';
+const labels={CONFIRMED_EVENT:'🟢 CONFIRMADO',CONFIRMED_FACT:'🟢 CONFIRMADO',CORROBORATED_FACT:'🟡 CORROBORADO',CONFLICTING_REPORTS:'🔴 EN CONFLICTO',PENDING_VERIFICATION:'🟠 PENDIENTE',EXPIRED:'⚫ EXPIRADO'};
+async function load(){try{const r=await fetch(DATA_URL,{cache:'no-store'});if(!r.ok)throw new Error();data=await r.json();render()}catch(e){document.getElementById('facts').innerHTML='<div class="empty">No se pudo cargar el dataset MOS. No se mostrarán datos de emergencia por defecto.</div>'}}
+function render(){const rows=(data.situations||[]).filter(x=>filter==='ALL'||x.verification_state===filter);document.getElementById('summary').innerHTML=`<article class="card"><div class="status green">DATOS PUBLICABLES</div><h2>${rows.length}</h2><p class="small">Registros que superaron el límite MOS para esta vista.</p></article><article class="card"><div class="status gray">ACTUALIZACIÓN</div><p class="small">${data.generated_at||'No disponible'}</p></article>`;document.getElementById('facts').innerHTML=rows.length?rows.map(x=>`<article class="fact"><strong>${labels[x.verification_state]||x.verification_state}</strong><h3>${esc(x.title||'Sin título')}</h3><p>${esc(x.summary||'')}</p><div class="meta">Fuente: ${esc(x.source||'No disponible')} · Riesgo: ${esc(x.risk||'No disponible')} · Publicado: ${esc(x.published_at||'No disponible')}</div><p>${x.source_url?`<a href="${safeUrl(x.source_url)}" rel="noopener noreferrer" target="_blank">Ver fuente original</a>`:''}</p></article>`).join(''):'<div class="empty">No hay información que cumpla este filtro y las reglas de publicación.</div>';
+const unknowns=(data.unknowns||[]);document.getElementById('unknowns').innerHTML=unknowns.length?'<ul>'+unknowns.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>':'No hay incertidumbres declaradas en el dataset.'}
+function esc(s){return String(s).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))};function safeUrl(u){try{const x=new URL(u,location.href);return ['https:','http:'].includes(x.protocol)?x.href:'#'}catch{return '#'}}
+document.querySelectorAll('button[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});load();
+</script></body></html>
