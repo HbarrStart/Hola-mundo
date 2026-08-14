@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """MOS Alpha-13 traceable situation summary.
 
-Only summarizes claims already present in the supplied ledger. It never creates
+Only summarizes claims already present in the supplied ledger. Public output is
+fail-closed: only explicitly publishable statuses are emitted. It never creates
 new facts, inferred locations, numbers, or causal explanations.
 """
 from __future__ import annotations
@@ -9,6 +10,7 @@ from dataclasses import dataclass
 from typing import Iterable
 
 ALLOWED = {'ALLOW','ALLOW_WITH_CONTEXT','HUMAN_REVIEW','HOLD','BLOCK'}
+PUBLIC_STATUSES = {'ALLOW','ALLOW_WITH_CONTEXT'}
 
 @dataclass(frozen=True)
 class Claim:
@@ -34,7 +36,7 @@ def build_summary(claims: Iterable[Claim], include_blocked: bool = False) -> lis
     for c in claims:
         if c.status not in ALLOWED:
             raise ValueError('unknown_gate_status')
-        if c.status == 'BLOCK' and not include_blocked:
+        if c.status not in PUBLIC_STATUSES:
             continue
         if not c.evidence_refs:
             raise ValueError('summary_item_missing_evidence_refs')
