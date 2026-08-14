@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Conservative event identity/deduplication for MOS.
+"""Conservative identity matching for emergency event observations.
 
-This module clusters observations only when there is strong evidence that they
-refer to the same event. Ambiguous matches remain separate and require review.
+This module NEVER confirms an event relationship from proximity alone. It
+returns a candidate when independent observations are compatible and leaves
+ambiguous cases unresolved for corroboration/human review.
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime
 from math import asin, cos, radians, sin, sqrt
 
 @dataclass(frozen=True)
@@ -41,12 +42,11 @@ def _minutes(a: str, b: str) -> float | None:
         da = datetime.fromisoformat(a.replace('Z', '+00:00'))
         db = datetime.fromisoformat(b.replace('Z', '+00:00'))
         return abs((da - db).total_seconds()) / 60
-    except ValueError:
+    except (TypeError, ValueError):
         return None
 
 
 def compare(a: Observation, b: Observation) -> IdentityDecision:
-    reasons: list[str] = []
     if a.event_type != b.event_type:
         return IdentityDecision('DIFFERENT_EVENT', 'HIGH', ('event_type_mismatch',))
 
@@ -59,15 +59,15 @@ def compare(a: Observation, b: Observation) -> IdentityDecision:
     dist = _distance_km(a, b)
     mag_diff = None if None in (a.magnitude, b.magnitude) else abs(a.magnitude-b.magnitude)
 
-    # Conservative earthquake clustering: all available signals must agree.
+    # These are intentionally only candidate thresholds, not confirmation rules.
+    # Confirmation belongs to corroboration + Safety Gate, not this identity module.
     if a.event_type == 'earthquake':
-        checks = []
-        if mins is not None: checks.append(mins <= 10)
-        if dist is not None: checks.append(dist <= 80)
-        if mag_diff is not None: checks.append(mag_diff <= 0.6)
-        if len(checks) >= 2 and all(checks):
-            reasons.append('compatible_time_location_magnitude')
-            return IdentityDecision('SAME_EVENT_CANDIDATE', 'MEDIUM', tuple(reasons))
+        available = []
+        if mins is not None: available.append(mins <= 10)
+        if dist is not None: available.append(dist <= 80)
+        if mag_diff is not None: available.append(mag_diff <= 0.6)
+        if len(available) == 3 and all(available):
+            return IdentityDecision('SAME_EVENT_CANDIDATE', 'MEDIUM', ('compatible_time_location_magnitude',))
 
     return IdentityDecision('AMBIGUOUS', 'LOW', ('insufficient_identity_evidence',))
 
