@@ -1,14 +1,30 @@
 {
-  "version": "0.1",
-  "policy": "Primary sources only for emergency facts. Secondary sources are leads and require corroboration.",
+  "version": "0.2",
+  "policy": "MOS does not rank truth by institutional status. Source type determines how evidence is evaluated; publication requires evidence and corroboration appropriate to the claim.",
+  "source_types": {
+    "official": {"label":"Fuente oficial/primaria","default_role":"primary_evidence"},
+    "territorial": {"label":"Fuente territorial","default_role":"primary_local_evidence"},
+    "community": {"label":"Fuente comunitaria","default_role":"local_signal"},
+    "independent_media": {"label":"Medio o periodista independiente","default_role":"secondary_evidence"},
+    "investigator": {"label":"Investigador/a independiente","default_role":"secondary_evidence"},
+    "elected_official": {"label":"Congresista o funcionario electo","default_role":"statement_or_document"},
+    "citizen_report": {"label":"Reporte ciudadano","default_role":"signal"},
+    "social_signal": {"label":"Señal en redes sociales","default_role":"lead"}
+  },
   "sources": [
-    {"id":"sgc","name":"Servicio Geológico Colombiano","type":"primary","scope":["earthquakes","aftershocks","seismicity"],"url":"https://www.sgc.gov.co/","enabled":true},
-    {"id":"ungrd","name":"Unidad Nacional para la Gestión del Riesgo de Desastres","type":"primary","scope":["emergency","damage","response","humanitarian"],"url":"https://www.gestiondelriesgo.gov.co/","enabled":true},
-    {"id":"snigrd","name":"Sistema Nacional de Información para la Gestión del Riesgo de Desastres","type":"primary","scope":["alerts","risk","incidents"],"url":"https://www.gestiondelriesgo.gov.co/snigrd/","enabled":true},
-    {"id":"cruzroja","name":"Cruz Roja Colombiana","type":"primary","scope":["humanitarian","donations","response"],"url":"https://www.cruzrojacolombiana.org/","enabled":true},
-    {"id":"defensacivil","name":"Defensa Civil Colombiana","type":"primary","scope":["rescue","response","alerts"],"url":"https://www.defensacivil.gov.co/","enabled":true},
-    {"id":"ideam","name":"IDEAM","type":"primary","scope":["weather","rainfall","landslides"],"url":"https://www.ideam.gov.co/","enabled":true},
-    {"id":"bomberos","name":"Dirección Nacional de Bomberos de Colombia","type":"primary","scope":["rescue","fire","response"],"url":"https://www.bomberos.gov.co/","enabled":true},
-    {"id":"alcaldias","name":"Autoridades territoriales","type":"primary","scope":["local emergency","shelters","roads","needs"],"url":"https://www.gov.co/","enabled":true}
+    {"id":"sgc","name":"Servicio Geológico Colombiano","type":"official","scope":["earthquakes","aftershocks","seismicity"],"url":"https://www.sgc.gov.co/","enabled":true},
+    {"id":"ungrd","name":"Unidad Nacional para la Gestión del Riesgo de Desastres","type":"official","scope":["emergency","damage","response","humanitarian"],"url":"https://www.gestiondelriesgo.gov.co/","enabled":true},
+    {"id":"snigrd","name":"Sistema Nacional de Información para la Gestión del Riesgo de Desastres","type":"official","scope":["alerts","risk","incidents"],"url":"https://www.gestiondelriesgo.gov.co/snigrd/","enabled":true},
+    {"id":"cruzroja","name":"Cruz Roja Colombiana","type":"official","scope":["humanitarian","donations","response"],"url":"https://www.cruzrojacolombiana.org/","enabled":true},
+    {"id":"defensacivil","name":"Defensa Civil Colombiana","type":"official","scope":["rescue","response","alerts"],"url":"https://www.defensacivil.gov.co/","enabled":true},
+    {"id":"ideam","name":"IDEAM","type":"official","scope":["weather","rainfall","landslides"],"url":"https://www.ideam.gov.co/","enabled":true},
+    {"id":"bomberos","name":"Dirección Nacional de Bomberos de Colombia","type":"official","scope":["rescue","fire","response"],"url":"https://www.bomberos.gov.co/","enabled":true},
+    {"id":"territoriales","name":"Autoridades territoriales","type":"territorial","scope":["local emergency","shelters","roads","needs"],"url":"https://www.gov.co/","enabled":true}
+  ],
+  "registration_rules": [
+    "Independent journalists, community media, investigators, elected officials and citizen reporters may be registered as sources.",
+    "Registration never makes every future claim from a source automatically true.",
+    "Every claim must carry evidence, timestamp, location when relevant, and corroboration status.",
+    "Social-media material is treated as a signal until independently verified."
   ]
 }
