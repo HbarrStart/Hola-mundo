@@ -1,0 +1,12 @@
+{
+  "observation_id": "alpha10-real-001",
+  "source_id": "reuters-2026-08-14",
+  "source_class": "SECONDARY",
+  "source_url": "https://www.reuters.com/business/environment/colombias-strongest-earthquake-century-2026-08-14/",
+  "retrieved_at": "2026-08-14",
+  "claim_type": "EVENT_EXISTENCE",
+  "observation": "Reuters reports that a major earthquake struck western Colombia on August 10, 2026; its report describes the event as a 7.4-magnitude earthquake.",
+  "status": "QUARANTINED",
+  "evidence_note": "This fixture records a real external report as secondary evidence. It is not a substitute for the primary SGC event record and is not publishable as confirmed by itself.",
+  "next_required_step": "Resolve and ingest the corresponding primary SGC event record before public confirmation."
+}
