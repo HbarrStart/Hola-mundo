@@ -1,5 +1,11 @@
 {
   "version":"0.1",
-  "policy":"Registry of source identities. Accreditation identifies a source; it does not certify every claim made by that source.",
-  "sources":[]
+  "policy":"A source is not truth by category; claims require evidence and corroboration.",
+  "sources":[
+    {"id":"SGC-RSNC","name":"Servicio Geológico Colombiano · Red Sismológica Nacional de Colombia","class":"PRIMARY","domain":"sgc.gov.co","status":"DISCOVERED_NOT_LIVE_CONNECTED","purpose":"Seismic event parameters and monitoring"},
+    {"id":"UNGRD","name":"Unidad Nacional para la Gestión del Riesgo de Desastres","class":"PRIMARY","domain":"gestiondelriesgo.gov.co","status":"DISCOVERED_NOT_LIVE_CONNECTED","purpose":"Emergency management and official situation reports"},
+    {"id":"IDEAM","name":"Instituto de Hidrología, Meteorología y Estudios Ambientales","class":"PRIMARY","domain":"ideam.gov.co","status":"DISCOVERED_NOT_LIVE_CONNECTED","purpose":"Weather, hydrology and environmental monitoring"},
+    {"id":"INDEPENDENT_MEDIA","name":"Independent media / journalists / researchers","class":"SECONDARY","status":"ADAPTER_PENDING","purpose":"Independent reporting and documentary evidence"},
+    {"id":"CITIZEN_REPORT","name":"Citizen reports","class":"TERTIARY","status":"ADAPTER_PENDING","purpose":"Local observations and evidence requiring corroboration"}
+  ]
 }
