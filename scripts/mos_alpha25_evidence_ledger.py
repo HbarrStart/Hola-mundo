@@ -27,7 +27,7 @@ class Evidence:
     relation: EvidenceRelation
 
 def content_hash(content: str) -> str:
-    if not content:
+    if not isinstance(content, str) or not content.strip():
         raise ValueError('empty_evidence_content')
     return hashlib.sha256(content.encode('utf-8')).hexdigest()
 
@@ -36,7 +36,9 @@ def create_evidence(evidence_id: str, claim_id: str, source_id: str, location: s
                     pointer: str, relation: EvidenceRelation) -> Evidence:
     fields = [evidence_id, claim_id, source_id, location, retrieved_at,
               evidence_type, pointer]
-    if any(not x for x in fields):
+    if any(not isinstance(x, str) or not x.strip() for x in fields):
         raise ValueError('incomplete_evidence_record')
+    if not isinstance(relation, EvidenceRelation):
+        raise ValueError('invalid_evidence_relation')
     return Evidence(evidence_id, claim_id, source_id, location, retrieved_at,
                     content_hash(content), evidence_type, pointer, relation)
