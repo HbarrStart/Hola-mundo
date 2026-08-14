@@ -1,0 +1,37 @@
+{
+  "snapshot_date":"2026-08-14",
+  "purpose":"Emergency research snapshot; NOT public operational clearance.",
+  "policy":"No claim is marked CONFIRMED unless supported by appropriate primary evidence. Current snapshot contains corroborated secondary reporting and must remain behind the MOS Safety Gate until primary-source confirmation.",
+  "claims":[
+    {
+      "id":"MOS-20260814-0001",
+      "status":"CORROBORATED",
+      "risk":"HIGH",
+      "claim":"A magnitude 7.4 earthquake struck western Colombia on 2026-08-10, with the epicenter reported near San José del Palmar, Chocó.",
+      "sources":[
+        {"name":"Associated Press","url":"https://apnews.com/article/99bea7b7eae8778e9e6729556c855369","source_type":"independent_media","evidence_types":["reporting"]},
+        {"name":"El País América Colombia","url":"https://elpais.com/america-colombia/2026-08-10/un-fuerte-temblor-sacude-colombia.html","source_type":"independent_media","evidence_types":["reporting"]}
+      ],
+      "verification_note":"Two independent secondary reports agree on magnitude and general location. The current searchable SGC pages retrieved for this snapshot did not expose a matching 2026-08-10 event, so MOS must not label this CONFIRMED yet.",
+      "publication":"HOLD"
+    },
+    {
+      "id":"MOS-20260814-0002",
+      "status":"CORROBORATED",
+      "risk":"CRITICAL",
+      "claim":"Search-and-rescue operations are continuing and hundreds of people remain reported missing in current coverage.",
+      "sources":[
+        {"name":"Associated Press","url":"https://apnews.com/article/99bea7b7eae8778e9e6729556c855369","source_type":"independent_media","evidence_types":["reporting"]},
+        {"name":"El País América Colombia","url":"https://elpais.com/america-colombia/2026-08-13/ultima-hora-del-terremoto-en-colombia-en-directo.html","source_type":"independent_media","evidence_types":["reporting"]}
+      ],
+      "verification_note":"Reports agree that rescue work continues, but casualty/missing counts differ by update time. MOS should display the timestamp and source for every number and avoid presenting a single consolidated figure until primary incident reporting is available.",
+      "publication":"HOLD_HUMAN_REVIEW"
+    }
+  ],
+  "primary_source_status":{
+    "sgc_search":"NO_MATCHING_CURRENT_EVENT_SURFACED",
+    "ungrd_search":"NO_MATCHING_CURRENT_EVENT_SURFACED",
+    "ideam_search":"NO_MATCHING_CURRENT_EVENT_SURFACED"
+  },
+  "next_action":"Build source-specific adapters and obtain primary incident records before public operational use."
+}
