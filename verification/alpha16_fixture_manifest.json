@@ -1,0 +1,11 @@
+{
+  "phase": "ALPHA-16",
+  "dataset": "SYNTHETIC_ONLY",
+  "real_emergency_data": false,
+  "cases": [
+    "different_values_without_supersession -> UNRESOLVED_CHANGE",
+    "same_value_from_two_sources -> UPDATE",
+    "claim_identity_preserved -> TRACEABLE"
+  ],
+  "required_ci": true
+}
