@@ -21,10 +21,16 @@ jobs:
       - name: Run claim classifier
         run: python scripts/mos_claims.py
 
+      - name: Run MOS Safety Gate
+        run: python scripts/mos_safety_gate.py
+
+      - name: Run safety tests
+        run: python -m pytest -q tests/test_mos_safety_gate.py
+
       - name: Commit MOS state
         run: |
           git config user.name "MOS Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ingestion_report.json data/claims.json
+          git add data/ingestion_report.json data/claims.json data/publication_queue.json
           git diff --cached --quiet || git commit -m "chore(mos): update emergency monitoring state"
           git push
