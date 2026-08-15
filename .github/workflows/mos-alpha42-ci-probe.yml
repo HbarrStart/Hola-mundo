@@ -1,0 +1,15 @@
+name: MOS Alpha-42 CI Probe
+on:
+  push:
+    branches: [mos-alpha42-audit-integrity-verify]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: PYTHONPATH=. python -m pytest -q tests/test_alpha42_ci_probe.py tests/test_mos_alpha42_audit_integrity.py
