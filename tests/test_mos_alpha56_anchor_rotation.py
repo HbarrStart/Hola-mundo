@@ -4,9 +4,9 @@ from scripts.mos_alpha55_audit_anchor import create_anchor
 from scripts.mos_alpha56_anchor_rotation import AnchorRotation,rotate_anchor,verify_rotation
 
 def records(n=2):
-    out=[]; prev=None
+    out=[]; prev_hash=''
     for i in range(n):
-        r=make_record(i,{'x':i},prev.record_hash if prev else None); out.append(r); prev=r
+        r=make_record(i,{'x':i},prev_hash); out.append(r); prev_hash=r.record_hash
     return out
 
 def test_first_rotation():
