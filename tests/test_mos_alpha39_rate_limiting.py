@@ -13,7 +13,7 @@ def test_refill_restores_capacity():
 def test_never_exceeds_capacity_after_long_idle():
     r=RateLimiter(2,1)
     assert r.allow(0) and r.allow(0)
-    assert not r.allow(100, 3)
+    with pytest.raises(ValueError,match='invalid_request'): r.allow(100, 3)
 
 def test_invalid_configuration_fails_closed():
     with pytest.raises(ValueError,match='invalid_rate_limit'): RateLimiter(0,1)
