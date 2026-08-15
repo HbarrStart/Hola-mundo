@@ -2,6 +2,8 @@ name: MOS Alpha-53 Audit Integrity
 on:
   push:
     branches: [mos-alpha53-audit-integrity]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 jobs:
   audit-integrity-tests:
