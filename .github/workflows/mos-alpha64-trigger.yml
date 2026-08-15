@@ -1,0 +1,9 @@
+name: MOS Alpha-64 Trigger
+on:
+  push:
+    branches: [mos-alpha64-report-gating]
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Alpha-64 CI trigger"
